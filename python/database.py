@@ -24,7 +24,7 @@ def create_connection():
 
     except mysql.connector.Error as e:
         print(f'Error connecting to the MySQL database: {e}')
-        return e
+        raise e
     
 if __name__ == '__main__':
     conn = create_connection()
