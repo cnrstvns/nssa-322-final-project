@@ -1,23 +1,24 @@
 import mysql.connector
-import os 
-from dotenv import load_dotenv
+import os
 
-load_dotenv()
-
-# Get the environment variables for the database connection
-db_host = os.getenv('DB_HOST')
-db_user = os.getenv('DB_USER')
-db_password = os.getenv('DB_PASSWORD')
-db_name = os.getenv('DB_NAME')
 
 def create_connection():
+    db_host = os.getenv('DB_HOST')
+    db_user = os.getenv('DB_USER')
+    db_password = os.getenv('DB_PASSWORD')
+    db_name = os.getenv('DB_NAME')
+    db_port = os.getenv('DB_PORT')
+
+    print(db_host, db_user, db_password, db_name)
+
     # Create a MySQL connection
     try:
         conn = mysql.connector.connect(
             host=db_host,
             user=db_user,
             password=db_password,
-            database=db_name
+            database=db_name,
+            port=db_port
         )
 
         return conn
@@ -25,7 +26,8 @@ def create_connection():
     except mysql.connector.Error as e:
         print(f'Error connecting to the MySQL database: {e}')
         raise e
-    
+
+
 if __name__ == '__main__':
     conn = create_connection()
     print('Successfully connected to the MySQL database!')
