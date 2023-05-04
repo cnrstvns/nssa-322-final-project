@@ -13,7 +13,7 @@ CREATE TABLE device_statistics (
   memory_amount INT NOT NULL,
   memory_utilization INT NOT NULL,
   disk_size VARCHAR(25) NOT NULL,
-  disk_utilization INT NOT NULL
+  disk_utilization INT NOT NULL,
   
   PRIMARY KEY (id)
 )
