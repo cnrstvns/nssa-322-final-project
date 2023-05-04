@@ -8,8 +8,6 @@ def get_hostname():
 
 
 def get_interface():
-    return "en10"
-
     interface = subprocess.getoutput(
         "ifconfig | grep \"ens\" | awk -F [:] '{print $1}'")
 
@@ -32,8 +30,6 @@ def get_cpu_cores():
 
 
 def get_cpu_speed():
-    return '1.0'
-
     cpu_speed = int(subprocess.check_output(
         "lscpu | grep \"MHz\" | awk '{print $3}'"))
 
@@ -41,8 +37,6 @@ def get_cpu_speed():
 
 
 def get_cpu_utilization():
-    return .10
-
     cpu_utilization = int(subprocess.check_output(
         "top -b -n 1 -U $(whoami) | grep \"$(whoami)\" | awk '{total+=$9} END {print total}'"))
 
@@ -50,8 +44,6 @@ def get_cpu_utilization():
 
 
 def get_memory_amount():
-    return 16384
-
     memory_amount = int(subprocess.check_output(
         "lsmem | grep \"Total online\" | awk {print $4} | tr -d \"G\" ")) * 1024
 
@@ -59,8 +51,6 @@ def get_memory_amount():
 
 
 def get_memory_utilization():
-    return .64
-
     memory_utilization = int(subprocess.check_output(
         "top -b -n 1 -U $(whoami) | grep \"$(whoami)\" | awk '{total+=$10} END {print total}'"))
 
@@ -75,8 +65,6 @@ def get_disk_size():
 
 
 def get_disk_utilization():
-    return '8.5Gi'
-
     disk_utilization = subprocess.getoutput(
         "df -h |  grep \"boot$\" | awk '{print $2}'")
 
