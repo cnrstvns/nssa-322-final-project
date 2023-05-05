@@ -3,7 +3,7 @@ import system
 from dotenv import load_dotenv
 import time
 
-load_dotenv('.env')
+load_dotenv()
 
 conn = create_connection()
 print('Successfully connected to the MySQL database!')
