@@ -50,7 +50,9 @@ def get_disk_size():
 
 
 def get_disk_utilization():
-    disk_utilization = subprocess.check_output(
-        "df -h |  grep \"boot$\" | awk '{print $2}'", shell=True)
+    disk_utilization_gb = float(subprocess.check_output(
+        "df -h | grep \"/dev/vda1\" | awk '{print $2}' | tr -d G", shell=True).strip())
 
-    return disk_utilization
+    disk_utilization_mb = disk_utilization_gb * 1000
+
+    return disk_utilization_mb
