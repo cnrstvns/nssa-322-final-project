@@ -9,8 +9,6 @@ def create_connection():
     db_name = os.getenv('DB_NAME')
     db_port = os.getenv('DB_PORT')
 
-    print(db_host, db_user, db_password, db_name)
-
     # Create a MySQL connection
     try:
         conn = mysql.connector.connect(
