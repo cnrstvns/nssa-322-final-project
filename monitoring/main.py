@@ -13,7 +13,6 @@ def run_statistics():
     device_name = system.get_hostname()
     device_mac = system.get_mac_address()
     device_cpu_cores = system.get_cpu_cores()
-    device_cpu_speed = system.get_cpu_speed()
     device_cpu_utilization = system.get_cpu_utilization()
     device_memory_amount = system.get_memory_amount()
     device_memory_utilization = system.get_memory_utilization()
@@ -28,20 +27,18 @@ def run_statistics():
             device_name,
             device_mac,
             cpu_cores,
-            cpu_speed,
             cpu_utilization,
             memory_amount,
             memory_utilization,
             disk_size,
             disk_utilization
         ) 
-        values (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+        values (%s, %s, %s, %s, %s, %s, %s, %s)
         ''',
         (
             device_name,
             device_mac,
             device_cpu_cores,
-            device_cpu_speed,
             device_cpu_utilization,
             device_memory_amount,
             device_memory_utilization,

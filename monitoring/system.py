@@ -29,13 +29,6 @@ def get_cpu_cores():
     return cores
 
 
-def get_cpu_speed():
-    cpu_speed = int(subprocess.check_output(
-        "lscpu | grep \"MHz\" | awk '{print $3}'"))
-
-    return cpu_speed
-
-
 def get_cpu_utilization():
     cpu_utilization = int(subprocess.check_output(
         "top -b -n 1 -U $(whoami) | grep \"$(whoami)\" | awk '{total+=$9} END {print total}'"))
