@@ -44,7 +44,7 @@ def get_memory_utilization():
 
 def get_disk_utilization():
     disk_utilization = float(subprocess.check_output(
-        "df -h |  grep \"/dev/vda1\" | awk '{print $5}' | tr -d '%'", shell=True)) / 100
+        "df -h |  grep \"/dev/vda1\" | awk '{print $5}' | tr -d '%'", shell=True).strip()) / 100
 
     return disk_utilization
 
