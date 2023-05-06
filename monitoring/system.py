@@ -2,13 +2,13 @@ import subprocess
 
 
 def get_hostname():
-    hostname = subprocess.getoutput("hostname", shell=True)
+    hostname = subprocess.check_output("hostname", shell=True)
 
     return hostname
 
 
 def get_interface():
-    interface = subprocess.getoutput(
+    interface = subprocess.check_output(
         "ifconfig | grep \"ens\" | awk -F [:] '{print $1}'", shell=True)
 
     return interface
@@ -18,13 +18,13 @@ def get_mac_address():
     interface = get_interface()
 
     command = f"ifconfig {interface} | grep \"ether\" | awk '{{print $2}}'"
-    mac_address = subprocess.getoutput(command, shell=True)
+    mac_address = subprocess.check_output(command, shell=True)
 
     return mac_address
 
 
 def get_cpu_cores():
-    cores = int(subprocess.check_output(["nproc"], shell=True))
+    cores = int(subprocess.check_output("nproc", shell=True))
 
     return cores
 
@@ -51,14 +51,14 @@ def get_memory_utilization():
 
 
 def get_disk_size():
-    disk_size = subprocess.getoutput(
+    disk_size = subprocess.check_output(
         "df -h |  grep \"boot$\" | awk '{print $5}' | tr -d '%'", shell=True)
 
     return disk_size
 
 
 def get_disk_utilization():
-    disk_utilization = subprocess.getoutput(
+    disk_utilization = subprocess.check_output(
         "df -h |  grep \"boot$\" | awk '{print $2}'", shell=True)
 
     return disk_utilization
