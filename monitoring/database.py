@@ -1,5 +1,6 @@
 import mysql.connector
 import os
+from dotenv import load_dotenv
 
 
 def create_connection():
@@ -8,8 +9,6 @@ def create_connection():
     db_password = os.getenv('DB_PASSWORD')
     db_name = os.getenv('DB_NAME')
     db_port = os.getenv('DB_PORT')
-
-    print(db_host, db_user, db_password, db_name)
 
     # Create a MySQL connection
     try:
@@ -29,6 +28,8 @@ def create_connection():
 
 
 if __name__ == '__main__':
+    load_dotenv()
+
     conn = create_connection()
     print('Successfully connected to the MySQL database!')
 

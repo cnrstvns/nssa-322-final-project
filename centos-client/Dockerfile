@@ -3,10 +3,10 @@ FROM centos:latest
 
 # Set up ENV for database
 ENV DB_HOST="sql-server"
-ENV DB_USER=root
-ENV DB_PASSWORD=root
-ENV DB_NAME=final_project
-ENV DB_PORT=8036
+ENV DB_USER="root"
+ENV DB_PASSWORD="root"
+ENV DB_NAME="final_project"
+ENV DB_PORT="3306"
 
 RUN cd /etc/yum.repos.d/
 
@@ -40,4 +40,4 @@ RUN yum install -y git
 RUN cd home && git clone https://github.com/cnrstvns/nssa-322-final-project 
 
 # Run the monitoring script
-RUN cd /home/nssa-322-final-project/monitoring && python3.7 main.py
+CMD cd /home/nssa-322-final-project/monitoring && python3.7 main.py
