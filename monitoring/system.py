@@ -2,7 +2,7 @@ import subprocess
 
 
 def get_hostname():
-    hostname = subprocess.getoutput("hostname", shell=True))
+    hostname = subprocess.getoutput("hostname", shell=True)
 
     return hostname
 
