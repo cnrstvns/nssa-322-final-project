@@ -42,17 +42,17 @@ def get_memory_utilization():
     return memory_utilization
 
 
-def get_disk_size():
-    disk_size = subprocess.check_output(
-        "df -h |  grep \"/dev/vda1\" | awk '{print $5}' | tr -d '%'", shell=True)
-
-    return disk_size
-
-
 def get_disk_utilization():
-    disk_utilization_gb = float(subprocess.check_output(
+    disk_utilization = float(subprocess.check_output(
+        "df -h |  grep \"/dev/vda1\" | awk '{print $5}' | tr -d '%'", shell=True)) / 100
+
+    return disk_utilization
+
+
+def get_disk_size():
+    disk_size_gb = float(subprocess.check_output(
         "df -h | grep \"/dev/vda1\" | awk '{print $2}' | tr -d G", shell=True).strip())
 
-    disk_utilization_mb = disk_utilization_gb * 1000
+    disk_size_mb = disk_size_gb * 1000
 
-    return disk_utilization_mb
+    return disk_size_mb
