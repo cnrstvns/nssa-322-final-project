@@ -7,45 +7,37 @@ def get_hostname():
     return hostname
 
 
-def get_interface():
-    interface = subprocess.check_output(
-        "ifconfig | grep \"ens\" | awk -F [:] '{print $1}'", shell=True)
-
-    return interface
-
-
 def get_mac_address():
-    interface = get_interface()
-
-    command = f"ifconfig {interface} | grep \"ether\" | awk '{{print $2}}'"
+    command = f"ip link show | grep \"eth\" | awk '{{print $2}}' | sed -n 2p"
     mac_address = subprocess.check_output(command, shell=True)
 
     return mac_address
 
 
 def get_cpu_cores():
-    cores = int(subprocess.check_output("nproc", shell=True))
+    cores = int(subprocess.check_output("nproc", shell=True).strip())
 
     return cores
 
 
 def get_cpu_utilization():
-    cpu_utilization = int(subprocess.check_output(
-        "top -b -n 1 -U $(whoami) | grep \"$(whoami)\" | awk '{total+=$9} END {print total}'", shell=True))
+    cpu_utilization = float(subprocess.check_output(
+        "top -b -n 1 -U $(whoami) | grep \"$(whoami)\" | awk '{total+=$9} END {print total}'", shell=True).strip())
 
     return cpu_utilization / 100
 
 
 def get_memory_amount():
-    memory_amount = int(subprocess.check_output(
-        "lsmem | grep \"Total online\" | awk {print $4} | tr -d \"G\"", shell=True)) * 1024
+    memory_kb = int(subprocess.check_output(
+        "cat /proc/meminfo | grep \"MemTotal\" | awk '{print $2}'", shell=True).strip())
+    memory_mb = memory_kb / 1000
 
-    return memory_amount
+    return memory_mb
 
 
 def get_memory_utilization():
-    memory_utilization = int(subprocess.check_output(
-        "top -b -n 1 -U $(whoami) | grep \"$(whoami)\" | awk '{total+=$10} END {print total}'", shell=True))
+    memory_utilization = float(subprocess.check_output(
+        "top -b -n 1 -U $(whoami) | grep \"$(whoami)\" | awk '{total += $10} END {print total}'", shell=True).strip())
 
     return memory_utilization
 
