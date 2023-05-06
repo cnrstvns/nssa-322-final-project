@@ -44,7 +44,7 @@ def get_memory_utilization():
 
 def get_disk_size():
     disk_size = subprocess.check_output(
-        "df -h |  grep \"boot$\" | awk '{print $5}' | tr -d '%'", shell=True)
+        "df -h |  grep \"/dev/vda1\" | awk '{print $5}' | tr -d '%'", shell=True)
 
     return disk_size
 

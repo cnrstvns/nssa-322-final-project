@@ -8,7 +8,6 @@ CREATE TABLE device_statistics (
   device_name VARCHAR(100) NOT NULL,
   device_mac VARCHAR(100) NOT NULL,
   cpu_cores INT NOT NULL,
-  cpu_speed INT NOT NULL,
   cpu_utilization INT NOT NULL,
   memory_amount INT NOT NULL,
   memory_utilization INT NOT NULL,

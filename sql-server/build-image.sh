@@ -1,1 +1,1 @@
-docker build -t mysql-server .
+docker build --no-cache -t sql-server .

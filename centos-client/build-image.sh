@@ -1,1 +1,1 @@
-docker build -t centos-client .
+docker build --no-cache -t centos-client .

@@ -1,1 +1,1 @@
-docker run -d --name centos-client centos-client
+docker run -it -d --link sql-server:sql-server --name centos-client centos-client
